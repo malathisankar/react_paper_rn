@@ -1,20 +1,41 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { SafeAreaView } from 'react-native';
+import { Provider as PaperProvider, Button, TextInput, Card, Text, Appbar } from 'react-native-paper';
 
-export default function App() {
+const App = () => {
+  const [text, setText] = React.useState('');
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+ 
+    <PaperProvider>
+      <SafeAreaView style={{ flex: 1, justifyContent: 'center', padding: 20 }}>
+        <Appbar.Header>
+          <Appbar.Content title="React Native Paper Demo" />
+        </Appbar.Header>
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+        <Card style={{ marginBottom: 20 }}>
+          <Card.Title title="Welcome!" subtitle="React Native Paper Example" />
+          <Card.Content>
+            <Text variant="bodyMedium">
+              This is a simple example using React Native Paper.
+            </Text>
+          </Card.Content>
+        </Card>
+
+        <TextInput
+          label="Type something"
+          value={text}
+          onChangeText={text => setText(text)}
+          style={{ marginBottom: 20 }}
+        />
+
+        <Button mode="contained" onPress={() => console.log("Button pressed!")}>
+          Press Me
+        </Button>
+
+      </SafeAreaView>
+    </PaperProvider>
+  );
+};
+
+export default App;
